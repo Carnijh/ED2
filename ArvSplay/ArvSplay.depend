@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1527462388 source:c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\arvsplay\main.cpp
+	<iostream>
+	"arv_splay.h"
+	<cstdio>
+
+1527462370 c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\arvsplay\include\arv_splay.h
+	"No.h"
+
+1527462191 c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\arvsplay\include\no.h
+
