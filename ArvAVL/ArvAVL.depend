@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1527392399 source:c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\arvavl.cpp
+	"ArvAVL.h"
+	<iostream>
+
+1527432285 c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\arvavl.h
+	"NoAVL.h"
+	<iostream>
+
+1527387451 c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\noavl.h
+	<iostream>
+
+1527387793 source:c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\main.cpp
+	<iostream>
+	"ArvAVL.h"
+

@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1525900165 source:c:\users\carol\documents\rubronegra\main.cpp
+	<iostream>
+	"ArvRN.h"
+
+1525900241 c:\users\carol\documents\rubronegra\include\arvrn.h
+	"No.h"
+
+1525900160 c:\users\carol\documents\rubronegra\include\no.h
+
+1525900394 source:c:\users\carol\documents\rubronegra\src\arvrn.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<sstream>
+	"ArvRN.h"
+
+1527391807 source:c:\users\carol\documents\ed2\rubronegra\arvrn.cpp
+	<bits/stdc++.h>
+	"ArvRN.h"
+
+1527392435 c:\users\carol\documents\ed2\rubronegra\arvrn.h
+	<iostream>
+	<cstdlib>
+	"NoRN.h"
+
+1527390724 c:\users\carol\documents\ed2\rubronegra\norn.h
+
+1527391856 source:c:\users\carol\documents\ed2\rubronegra\main.cpp
+	<iostream>
+	"ArvRN.h"
+
