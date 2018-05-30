@@ -14,3 +14,19 @@
 	<iostream>
 	"ArvAVL.h"
 
+1527704841 source:c:\users\carni\documents\git\ed2\arvavl\arvavl.cpp
+	"ArvAVL.h"
+	<iostream>
+
+1527702986 c:\users\carni\documents\git\ed2\arvavl\arvavl.h
+	"NoAVL.h"
+	<iostream>
+
+1527700802 c:\users\carni\documents\git\ed2\arvavl\noavl.h
+	<iostream>
+
+1527703380 source:c:\users\carni\documents\git\ed2\arvavl\main.cpp
+	<iostream>
+	<cstdlib>
+	"ArvAVL.h"
+

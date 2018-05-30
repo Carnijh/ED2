@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "ArvAVL.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ int main()
     t.inserir(38);
     t.inserir(69);
     t.imprimir();
-    t.remover(5);
+    t.remover(30);
     t.remover(35);
     t.remover(65);
     t.remover(89);

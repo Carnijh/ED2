@@ -16,8 +16,7 @@ class ArvAVL
     NoAVL* findMin(NoAVL* t);
     NoAVL* findMax(NoAVL* t);
     NoAVL* remover(int x, NoAVL* t);
-    int getAltura(NoAVL* t){ return (t == NULL ? -1 : t->altura); }
-    int getBalance(NoAVL* t);
+    int getAltura(NoAVL* t){ return (t == NULL ? 0 : t->altura); }
     bool auxBusca(NoAVL* p, int C);
 
 public:
