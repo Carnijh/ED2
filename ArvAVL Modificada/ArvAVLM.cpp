@@ -35,7 +35,7 @@ NoAVLM* ArvAVLM::inserir(int x, NoAVLM* t)
         }
     }
 
-    t->altura = max(getAltura(t->esq), getAltura(t->dir))+1;
+    t->altura = max(getAltura(t->esq), getAltura(t->dir));
     return t;
 }
 
@@ -44,8 +44,8 @@ NoAVLM* ArvAVLM::rotacionarDireita(NoAVLM* &t)
     NoAVLM* u = t->esq;
     t->esq = u->dir;
     u->dir = t;
-    t->altura = max(getAltura(t->esq), getAltura(t->dir))+1;
-    u->altura = max(getAltura(u->esq), t->altura)+1;
+    t->altura = max(getAltura(t->esq), getAltura(t->dir));
+    u->altura = max(getAltura(u->esq), t->altura);
     return u;
 }
 
@@ -54,8 +54,8 @@ NoAVLM* ArvAVLM::rotacionarEsquerda(NoAVLM* &t)
     NoAVLM* u = t->dir;
     t->dir = u->esq;
     u->esq = t;
-    t->altura = max(getAltura(t->esq), getAltura(t->dir))+1;
-    u->altura = max(getAltura(t->dir), t->altura)+1 ;
+    t->altura = max(getAltura(t->esq), getAltura(t->dir));
+    u->altura = max(getAltura(t->dir), t->altura);
     return u;
 }
 
@@ -93,59 +93,51 @@ NoAVLM* ArvAVLM::findMax(NoAVLM* t)
 
 NoAVLM* ArvAVLM::remover(int x, NoAVLM* t)
 {
-    NoAVLM* temp;
+    NoAVLM* aux;
 
-    // Element not found
     if(t == NULL)
         return NULL;
-
-    // Searching for element
+    // Procurando elemento
     else if(x < t->info)
         t->esq = remover(x, t->esq);
     else if(x > t->info)
         t->dir = remover(x, t->dir);
-
-    // Element found
-    // With 2 children
+    // Elemento com 2 filhos
     else if(t->esq && t->dir)
     {
-        temp = findMin(t->dir);
-        t->info = temp->info;
+        aux = findMin(t->dir);
+        t->info = aux->info;
         t->dir = remover(t->info, t->dir);
     }
-    // With one or zero child
+    // Elemento com 1 ou 0 filhos
     else
     {
-        temp = t;
+        aux = t;
         if(t->esq == NULL)
             t = t->dir;
         else if(t->dir == NULL)
             t = t->esq;
-        delete temp;
+        delete aux;
     }
     if(t == NULL)
         return t;
 
-    t->altura = max(getAltura(t->esq), getAltura(t->dir))+1;
+    t->altura = max(getAltura(t->esq), getAltura(t->dir));
 
-    // If NoAVLM is unbalanced
-    // If esq NoAVLM is deleted, dir case
+    // If NoAVLM está desbalanceada
+    // If nó esquerdo for deletado
     if(getAltura(t->esq) - getAltura(t->dir) == 4)
     {
-        // dir dir case
         if(getAltura(t->esq->esq) - getAltura(t->esq->dir) == 1)
             return rotacionarEsquerda(t);
-        // dir esq case
         else
             return rotacionarDuplaEsquerda(t);
     }
-    // If dir NoAVLM is deleted, esq case
+    // If nó direito for deletado
     else if(getAltura(t->dir) - getAltura(t->esq) == 4)
     {
-        // esq esq case
         if(getAltura(t->dir->dir) - getAltura(t->dir->esq) == 1)
             return rotacionarDireita(t);
-        // esq dir case
         else
             return rotacionarDuplaDireita(t);
     }

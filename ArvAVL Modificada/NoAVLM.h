@@ -1,5 +1,6 @@
 #ifndef NOAVLM_H_INCLUDED
 #define NOAVLM_H_INCLUDED
+#include <iostream>
 
 class NoAVLM
 {

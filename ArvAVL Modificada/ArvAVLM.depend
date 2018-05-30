@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1527392399 source:c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\arvavl.cpp
+	"ArvAVL.h"
+	<iostream>
+
+1527432285 c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\arvavl.h
+	"NoAVL.h"
+	<iostream>
+
+1527387451 c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\noavl.h
+	<iostream>
+
+1527387793 source:c:\users\carol\google drive\documentos\ufjf\sistemas de informação\4º período\estrutura de dados ii\Árvore\arvavl\main.cpp
+	<iostream>
+	"ArvAVL.h"
+
+1527704841 source:c:\users\carni\documents\git\ed2\arvavl\arvavl.cpp
+	"ArvAVL.h"
+	<iostream>
+
+1527702986 c:\users\carni\documents\git\ed2\arvavl\arvavl.h
+	"NoAVL.h"
+	<iostream>
+
+1527700802 c:\users\carni\documents\git\ed2\arvavl\noavl.h
+	<iostream>
+
+1527703380 source:c:\users\carni\documents\git\ed2\arvavl\main.cpp
+	<iostream>
+	<cstdlib>
+	"ArvAVL.h"
+
+1527704841 source:c:\users\carni\documents\git\ed2\arvavl - copia\arvavl.cpp
+	"ArvAVL.h"
+	<iostream>
+
+1527705284 c:\users\carni\documents\git\ed2\arvavl - copia\arvavl.h
+	"NoAVL.h"
+	<iostream>
+
+1527700802 c:\users\carni\documents\git\ed2\arvavl - copia\noavl.h
+	<iostream>
+
+1527704871 source:c:\users\carni\documents\git\ed2\arvavl - copia\main.cpp
+	<iostream>
+	<cstdlib>
+	"ArvAVL.h"
+
+1527706250 source:c:\users\carni\documents\git\ed2\arvavl modificada\arvavlm.cpp
+	"ArvAVLM.h"
+	<iostream>
+
+1527706296 c:\users\carni\documents\git\ed2\arvavl modificada\arvavlm.h
+	"NoAVLM.h"
+	<iostream>
+
+1527706323 c:\users\carni\documents\git\ed2\arvavl modificada\noavlm.h
+	<iostream>
+
+1527706219 source:c:\users\carni\documents\git\ed2\arvavl modificada\main.cpp
+	<iostream>
+	<cstdlib>
+	"ArvAVLM.h"
+

@@ -21,6 +21,7 @@ class ArvAVL
 
 public:
     ArvAVL() { raiz = NULL; }
+    ~ArvAVL(){}
     void inserir(int x) { raiz = inserir(x, raiz); }
     void remover(int x) { raiz = remover(x, raiz); }
     void imprimir();
