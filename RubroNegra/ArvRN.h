@@ -15,7 +15,7 @@ class ArvRN
         void balancearInsercao(NoRN *ptr);
         void balancearRemocao(NoRN *N);
         int getCor(NoRN *N);
-        void setCor(NoRN *N, int cor);
+        void setCor(NoRN *N, Color cor);
         NoRN *minValorNoRN(NoRN *N);
         NoRN *maxValorNoRN(NoRN *N);
         NoRN* inserirRN(NoRN *raiz, NoRN *ptr);

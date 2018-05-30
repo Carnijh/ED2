@@ -9,12 +9,12 @@ ArvRN::ArvRN() {
 
 int ArvRN::getCor(NoRN *N) {
     if (N == NULL)
-        return false;
+        return BLACK;
 
     return N->cor;
 }
 
-void ArvRN::setCor(NoRN *N, int cor) {
+void ArvRN::setCor(NoRN *N, Color cor) {
     if (N == NULL)
         return;
 
@@ -85,15 +85,15 @@ void ArvRN::rotacionarDireita(NoRN *ptr) {
 void ArvRN::balancearInsercao(NoRN *ptr) {
     NoRN *pai = NULL;
     NoRN *avo = NULL;
-    while (ptr != raiz && getCor(ptr) == true && getCor(ptr->pai) == true) {
+    while (ptr != raiz && getCor(ptr) == RED && getCor(ptr->pai) == RED) {
         pai = ptr->pai;
         avo = pai->pai;
         if (pai == avo->esq) {
             NoRN *tio = avo->dir;
-            if (getCor(tio) == true) {
-                setCor(tio, false);
-                setCor(pai, false);
-                setCor(avo, true);
+            if (getCor(tio) == RED) {
+                setCor(tio, BLACK);
+                setCor(pai, BLACK);
+                setCor(avo, RED);
                 ptr = avo;
             } else {
                 if (ptr == pai->dir) {
@@ -107,10 +107,10 @@ void ArvRN::balancearInsercao(NoRN *ptr) {
             }
         } else {
             NoRN *tio = avo->esq;
-            if (getCor(tio) == true) {
-                setCor(tio, false);
-                setCor(pai, false);
-                setCor(avo, true);
+            if (getCor(tio) == RED) {
+                setCor(tio, BLACK);
+                setCor(pai, BLACK);
+                setCor(avo, RED);
                 ptr = avo;
             } else {
                 if (ptr == pai->esq) {
@@ -124,7 +124,7 @@ void ArvRN::balancearInsercao(NoRN *ptr) {
             }
         }
     }
-    setCor(raiz, false);
+    setCor(raiz, BLACK);
 }
 
 void ArvRN::balancearRemocao(NoRN *N) {
@@ -136,20 +136,20 @@ void ArvRN::balancearRemocao(NoRN *N) {
         return;
     }
 
-    if (getCor(N) == true || getCor(N->esq) == true || getCor(N->dir) == true) {
+    if (getCor(N) == RED || getCor(N->esq) == RED || getCor(N->dir) == RED) {
         NoRN *filho = N->esq != NULL ? N->esq : N->dir;
 
         if (N == N->pai->esq) {
             N->pai->esq = filho;
             if (filho != NULL)
                 filho->pai = N->pai;
-            setCor(filho, false);
+            setCor(filho, BLACK);
             delete (N);
         } else {
             N->pai->dir = filho;
             if (filho != NULL)
                 filho->pai = N->pai;
-            setCor(filho, false);
+            setCor(filho, BLACK);
             delete (N);
         }
     } else {
@@ -161,56 +161,56 @@ void ArvRN::balancearRemocao(NoRN *N) {
             pai = ptr->pai;
             if (ptr == pai->esq) {
                 irmao = pai->dir;
-                if (getCor(irmao) == true) {
-                    setCor(irmao, false);
-                    setCor(pai, true);
+                if (getCor(irmao) == RED) {
+                    setCor(irmao, BLACK);
+                    setCor(pai, RED);
                     rotacionarEsquerda(pai);
                 } else {
-                    if (getCor(irmao->esq) == false && getCor(irmao->dir) == false) {
-                        setCor(irmao, true);
-                        if(getCor(pai) == true)
-                            setCor(pai, false);
+                    if (getCor(irmao->esq) == BLACK && getCor(irmao->dir) == BLACK) {
+                        setCor(irmao, RED);
+                        if(getCor(pai) == RED)
+                            setCor(pai, BLACK);
                         else
                             setCor(pai, DOUBLE_BLACK);
                         ptr = pai;
                     } else {
-                        if (getCor(irmao->dir) == false) {
-                            setCor(irmao->esq, false);
-                            setCor(irmao, true);
+                        if (getCor(irmao->dir) == BLACK) {
+                            setCor(irmao->esq, BLACK);
+                            setCor(irmao, RED);
                             rotacionarDireita(irmao);
                             irmao = pai->dir;
                         }
                         setCor(irmao, pai->cor);
-                        setCor(pai, false);
-                        setCor(irmao->dir, false);
+                        setCor(pai, BLACK);
+                        setCor(irmao->dir, BLACK);
                         rotacionarEsquerda(pai);
                         break;
                     }
                 }
             } else {
                 irmao = pai->esq;
-                if (getCor(irmao) == true) {
-                    setCor(irmao, false);
-                    setCor(pai, true);
+                if (getCor(irmao) == RED) {
+                    setCor(irmao, BLACK);
+                    setCor(pai, RED);
                     rotacionarDireita(pai);
                 } else {
-                    if (getCor(irmao->esq) == false && getCor(irmao->dir) == false) {
-                        setCor(irmao, true);
-                        if (getCor(pai) == true)
-                            setCor(pai, false);
+                    if (getCor(irmao->esq) == BLACK && getCor(irmao->dir) == BLACK) {
+                        setCor(irmao, RED);
+                        if (getCor(pai) == RED)
+                            setCor(pai, BLACK);
                         else
                             setCor(pai, DOUBLE_BLACK);
                         ptr = pai;
                     } else {
-                        if (getCor(irmao->esq) == false) {
-                            setCor(irmao->dir, false);
-                            setCor(irmao, true);
+                        if (getCor(irmao->esq) == BLACK) {
+                            setCor(irmao->dir, BLACK);
+                            setCor(irmao, RED);
                             rotacionarEsquerda(irmao);
                             irmao = pai->esq;
                         }
                         setCor(irmao, pai->cor);
-                        setCor(pai, false);
-                        setCor(irmao->esq, false);
+                        setCor(pai, BLACK);
+                        setCor(irmao->esq, BLACK);
                         rotacionarDireita(pai);
                         break;
                     }
@@ -222,7 +222,7 @@ void ArvRN::balancearRemocao(NoRN *N) {
         else
             N->pai->dir = NULL;
         delete(N);
-        setCor(raiz, false);
+        setCor(raiz, BLACK);
     }
 }
 
@@ -271,7 +271,7 @@ NoRN* ArvRN::maxValorNoRN(NoRN *N) {
 int ArvRN::getAlturaNegra(NoRN *N) {
     int alturaNegra = 0;
     while (N != NULL) {
-        if (getCor(N) == false)
+        if (getCor(N) == BLACK)
             alturaNegra++;
         N = N->esq;
     }
@@ -290,7 +290,7 @@ void ArvRN::imprimePorNivel(NoRN* p, int nivel)
         cout << "(" << nivel << ")";
         for(int i = 1; i <= nivel; i++)
             cout << "--";
-        cout << p->info << endl;
+        cout << p->info << " " << p->cor << endl;
         imprimePorNivel(p->esq, nivel+1);
         imprimePorNivel(p->dir, nivel+1);
     }

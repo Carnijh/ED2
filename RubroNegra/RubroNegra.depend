@@ -30,3 +30,18 @@
 	<iostream>
 	"ArvRN.h"
 
+1527708746 source:c:\users\carni\documents\git\ed2\rubronegra\arvrn.cpp
+	<bits/stdc++.h>
+	"ArvRN.h"
+
+1527708492 c:\users\carni\documents\git\ed2\rubronegra\arvrn.h
+	<iostream>
+	<cstdlib>
+	"NoRN.h"
+
+1527708396 c:\users\carni\documents\git\ed2\rubronegra\norn.h
+
+1527707901 source:c:\users\carni\documents\git\ed2\rubronegra\main.cpp
+	<iostream>
+	"ArvRN.h"
+

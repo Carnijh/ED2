@@ -3,35 +3,34 @@
 
 using namespace std;
 
-void preencheABB(ArvRN* a, int p, int q);
-
 int main()
 {
-    ArvRN arv;
-
-    cout << "Criando Arvore Rubro Negra" << endl;
-    arv.inserir(15);
-    arv.inserir(7);
-    arv.inserir(3);
-    arv.inserir(24);
-    arv.inserir(6);
-    arv.inserir(8);
-    arv.inserir(10);
-    arv.inserir(12);
-    arv.inserir(17);
-    arv.inserir(19);
-
-    arv.imprimir();
-
-    //cout << "Busca os valores 20 e 5" << endl;
-    //cout << arv.busca(20) << endl;
-    //cout << arv.busca(5) << endl;
-
-    cout << endl << "Remover 24" << endl;
-    arv.remover(24);
-
-    cout << "Arvore Rubro Negra final" << endl;
-    arv.imprimir();
+    ArvRN t;
+    t.inserir(20);
+    t.inserir(25);
+    t.inserir(15);
+    t.inserir(10);
+    t.inserir(30);
+    t.inserir(5);
+    t.inserir(35);
+    t.inserir(67);
+    t.inserir(43);
+    t.inserir(21);
+    t.inserir(10);
+    t.inserir(89);
+    t.inserir(38);
+    t.inserir(69);
+    t.imprimir();
+    system("pause");
+    t.remover(20);
+    t.remover(35);
+    t.remover(65);
+    t.remover(89);
+    t.remover(43);
+    t.remover(88);
+    t.remover(20);
+    t.remover(38);
+    t.imprimir();
 
     return 0;
 }
