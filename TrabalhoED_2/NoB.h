@@ -14,6 +14,7 @@ class NoB
         void insere(int chave);
         void remover(int chave);
         NoB * getPai(NoB* no, NoB* raiz);
+        int getPosicaoPai(NoB* raiz, NoB* no);
         int * info;
         NoB ** filho;
         bool folha;

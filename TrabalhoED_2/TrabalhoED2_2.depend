@@ -1,22 +1,22 @@
 # depslib dependency file v1.0
-1527037879 source:c:\users\leona\desktop\trabalhoed2_2\main.cpp
+1527730953 source:c:\users\leona\desktop\trabalhoed2_2\main.cpp
 	<iostream>
 	<stdlib.h>
 	<fstream>
 	"ArvoreB.h"
 
-1527468436 source:c:\users\leona\desktop\trabalhoed2_2\arvoreb.cpp
+1527727951 source:c:\users\leona\desktop\trabalhoed2_2\arvoreb.cpp
 	"ArvoreB.h"
 	"Nob.h"
 
-1527455283 c:\users\leona\desktop\trabalhoed2_2\arvoreb.h
+1527722912 c:\users\leona\desktop\trabalhoed2_2\arvoreb.h
 	"Nob.h"
 	<iostream>
 
-1527468545 c:\users\leona\desktop\trabalhoed2_2\nob.h
+1527724153 c:\users\leona\desktop\trabalhoed2_2\nob.h
 	<iostream>
 
-1527468512 source:c:\users\leona\desktop\trabalhoed2_2\nob.cpp
+1527724153 source:c:\users\leona\desktop\trabalhoed2_2\nob.cpp
 	"NoB.h"
 	<iostream>
 

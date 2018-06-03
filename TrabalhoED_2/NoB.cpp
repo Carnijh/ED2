@@ -56,10 +56,35 @@ NoB * NoB::getPai(NoB* no, NoB* raiz){
     }
 }
 
+int NoB::getPosicaoPai(NoB* raiz, NoB* no){
+
+    NoB* p = raiz;
+    int i = 0;
+    int chave = info[0];
+
+    while(true){
+        if(p->filho[i] == no)
+            return i;
+        if(chave > p->info[i]){
+            if(i<(2*d)+1)
+                i++;
+            else if(p->filho[i+1] != NULL){
+                p = p->filho[i+1];
+                i = 0;
+            }
+        }
+        else if(p->filho[i] != NULL){
+                p = p->filho[i];
+                i = 0;
+        }
+    }
+}
+
 void NoB::insere(int chave){
 
     if(numchaves == 0){
         info[0] = chave;
+        numchaves ++;
     }
     else{
         int posicao = getPosicao(chave);
@@ -75,11 +100,11 @@ void NoB::insere(int chave){
                     info[i] = chave;
                 }
             }
+            numchaves ++;
         }
         else
-            cout<<"chave"<<chave<<"ja inserida"<<endl;
+            cout<<"Chave "<<chave<<" ja inserida"<<endl;
     }
-    numchaves ++;
 }
 
 void NoB::remover(int chave){

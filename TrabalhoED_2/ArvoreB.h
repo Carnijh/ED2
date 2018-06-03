@@ -15,7 +15,9 @@ class ArvoreB
         void inserir(int chave);
         void remover(int chave);
         NoB * busca(int chave);
+        NoB * buscaB(int chave, bool * encontrada);
         NoB * getRaiz(){return raiz;}
+        void concatena(NoB * pai, NoB* no,NoB* irmao);
 
     private:
         NoB * raiz;
