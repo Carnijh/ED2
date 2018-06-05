@@ -115,9 +115,10 @@ void NoB::remover(int chave){
         for(int i = posicao; i <= numchaves-1;i++){
             info[i] = info[i+1];
         }
+        numchaves --;
+        for(int i = (2*d)+1; i >= numchaves;i++)
+            info[i] = -1;
     }
     else
         cout<<"chave"<<chave<<"nao encontrada"<<endl;
-
-    numchaves --;
 }

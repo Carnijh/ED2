@@ -1,7 +1,14 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
+#ifdef WIN32
+ #include <time.h>
+#endif // WIN32
 #include "ArvoreB.h"
+#include "arv_splay.h"
+#include "ArvAVL.h"
+#include "ArvAVLM.h"
+#include "ArvRN.h"
 
 using namespace std;
 
@@ -21,19 +28,7 @@ void tratar_arquivo(){
         c = linha_local.begin();
         linha_global.clear();
         linha_global += linha_local;
-        /*if(*c >= '0' && *c <='9'){
-            while(*c != ','){
-                if(*c >= '0' && *c <= '9'){
-                id.push_back(*c);
-                }else if(*c == ','){
-                    lista << id << endl;
-                    linha_local.clear();
-                    id.clear();
-                    break;
-                }
-                c++;
-            }
-        }*/
+
         while((*c >= '0' && *c <= '9')&& *c != ','){
             if(achou_id == false)
                 id.push_back(*c);
@@ -48,7 +43,7 @@ void tratar_arquivo(){
             if(*c == '"'){
                 c++;
                 if(c == linha_local.end()){
-                    cout << k << endl;
+                    //cout << k << endl;
                     //cout << linha_global << endl;
                     break;
                 }
@@ -75,7 +70,7 @@ int get_quant_dados(int i){
     int dados;
     string converter;
     ifstream entrada;
-    entrada.open("entrada.txt");
+    entrada.open("entradaInsercao.txt");
 
     if(entrada.is_open()){
             if(i == 6){
@@ -148,32 +143,15 @@ int main()
     cout<<"tratamento finalizado"<<endl;
     */
 
-    ///Arvore B
-    int tam = 2;
-    ArvoreB arv(tam);
-    arv.inserir(1);
-    arv.inserir(2);
-
-    arv.imprimir();
-    for(int i = 1; i<3;i++){
-        //arv.inserir(i);
-        arv.imprimir();
-
-    }
-    arv.imprimir();
-
-    /// saida arquivo com o exemplo do cenario 1 do trabalho anterior
-
-    /// Cenario 1
-{
+///analise Arvore B
 
     int n = 0;
     int n_dados = get_quant_dados(n);///pega do arquivo entrada um N
-    int n_dados;
-    cin>> n_dados;
     cout<<n_dados<<endl;
     clock_t t0, tf;
-    double tempo_gasto;
+    double tempo_gastoInsercao;
+    double tempo_gastoBusca;
+    double tempo_gastoRemocao;
 
     while(n_dados != -1){
 
@@ -183,23 +161,57 @@ int main()
         randomizar(questionid,n_dados);
 
         ///calcula tempo
-        tempo_gasto = 0;
+        tempo_gastoInsercao = 0;
         t0 = clock();
-        quicksort(questionid,0,n_dados-1);
-        imprimir(questionid,n_dados);
+
+        ///Inserir Arvore B
+        int d = 2;
+        ArvoreB arv(d);
+
+        for(int i = 0; i<n_dados;i++)
+            arv.inserir(questionid[i]);
 
         tf = clock();
-        tempo_gasto = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+        tempo_gastoInsercao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoBusca = 0;
+        t0 = clock();
+
+        ///Busca Arvore B
+        for(int i = 0; i<n_dados;i++){
+            NoB * p;
+            p = arv.busca(questionid[i]);
+        }
+
+        tf = clock();
+        tempo_gastoBusca = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoRemocao = 0;
+        t0 = clock();
+
+        ///Remocao Arvore B
+        for(int i = 0; i<n_dados;i++)
+            arv.remover(questionid[i]);
+
+        tf = clock();
+        tempo_gastoRemocao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        ///saida Arvore B
 
         ofstream saida;
-        saida.open("saida.txt",ios::app|ios::in);
+
+        saida.open("saidaInsercao.txt",ios::app|ios::in);
         if(saida.is_open())
         {
-            saida <<"Cenario 1, com N = "<<n_dados<<endl;
+            saida <<"Insercao Arvore B com N = "<<n_dados<<endl;
             saida <<endl;
-            saida <<" comparaçoes = "<<comp<<endl;
-            saida <<" copia de registro = "<<chaves_iguais<<endl;
-            saida <<" tempo : "<<tempo_gasto<<endl;
+            saida <<" tempo : "<<tempo_gastoInsercao<<endl;
             saida <<endl;
             saida.close();
         }
@@ -207,13 +219,463 @@ int main()
             cout<<"Erro ao abrir o arquivo saida!"<<endl;
             exit(1);
         }
+
+        saida.open("saidaBusca.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Busca Arvore B com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoBusca<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaRemocao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Remocao Arvore B com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoRemocao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
         delete []questionid;
         n++;
         n_dados = get_quant_dados(n);///pega do arquivo entrada um N
-        cin>> n_dados;
     }
-}
 
+
+///analise Arvore RN
+
+    n = 0;
+    n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    cout<<n_dados<<endl;
+
+    while(n_dados != -1){
+
+        cout<<"N = "<<n_dados<<endl;
+        int *questionid = new int[n_dados];
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoInsercao = 0;
+        t0 = clock();
+
+        ///Inserir Arvore RN
+        ArvRN arv;
+
+        for(int i = 0; i<n_dados;i++)
+            arv.inserir(questionid[i]);
+
+        tf = clock();
+        tempo_gastoInsercao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoBusca = 0;
+        t0 = clock();
+
+        ///Busca Arvore RN
+        for(int i = 0; i<n_dados;i++){
+            bool achou;
+            achou = arv.busca(questionid[i]);
+        }
+
+        tf = clock();
+        tempo_gastoBusca = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoRemocao = 0;
+        t0 = clock();
+
+        ///Remocao Arvore RN
+        for(int i = 0; i<n_dados;i++)
+            arv.remover(questionid[i]);
+
+        tf = clock();
+        tempo_gastoRemocao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        ///saida Arvore RN
+
+        ofstream saida;
+
+        saida.open("saidaInsercao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Insercao Arvore RN com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoInsercao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaBusca.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Busca Arvore RN com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoBusca<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaRemocao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Remocao Arvore RN com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoRemocao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        delete []questionid;
+        n++;
+        n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    }
+
+
+///analise Arvore Splay
+
+    n = 0;
+    n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    cout<<n_dados<<endl;
+
+    while(n_dados != -1){
+
+        cout<<"N = "<<n_dados<<endl;
+        int *questionid = new int[n_dados];
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoInsercao = 0;
+        t0 = clock();
+
+
+        ///Inserir Arvore Splay
+        arv_splay arv;
+
+        for(int i = 0; i<n_dados;i++)
+            arv.insere(questionid[i]);
+
+        tf = clock();
+        tempo_gastoInsercao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoBusca = 0;
+        t0 = clock();
+
+        ///Busca Arvore Splay
+        for(int i = 0; i<n_dados;i++){
+            arv.busca(questionid[i]);
+        }
+
+        tf = clock();
+        tempo_gastoBusca = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoRemocao = 0;
+        t0 = clock();
+
+        ///Remocao Arvore Splay
+        for(int i = 0; i<n_dados;i++)
+            arv.remove(questionid[i]);
+
+        tf = clock();
+        tempo_gastoRemocao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        ///saida Arvore Splay
+
+        ofstream saida;
+
+        saida.open("saidaInsercao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Insercao Arvore Splay com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoInsercao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaBusca.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Busca Arvore Splay com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoBusca<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaRemocao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Remocao Arvore Splay com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoRemocao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        delete []questionid;
+        n++;
+        n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    }
+
+///analise Arvore AVL
+
+    n = 0;
+    n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    cout<<n_dados<<endl;
+
+    while(n_dados != -1){
+
+        cout<<"N = "<<n_dados<<endl;
+        int *questionid = new int[n_dados];
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoInsercao = 0;
+        t0 = clock();
+
+
+        ///Inserir Arvore AVL
+        ArvAVL arv;
+
+        for(int i = 0; i<n_dados;i++)
+            arv.inserir(questionid[i]);
+
+        tf = clock();
+        tempo_gastoInsercao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoBusca = 0;
+        t0 = clock();
+
+        ///Busca Arvore AVL
+        for(int i = 0; i<n_dados;i++){
+            bool achou;
+            achou = arv.busca(questionid[i]);
+        }
+
+        tf = clock();
+        tempo_gastoBusca = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoRemocao = 0;
+        t0 = clock();
+
+        ///Remocao Arvore AVL
+        for(int i = 0; i<n_dados;i++)
+            arv.remover(questionid[i]);
+
+        tf = clock();
+        tempo_gastoRemocao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        ///saida Arvore AVL
+
+        ofstream saida;
+
+        saida.open("saidaInsercao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Insercao Arvore AVL com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoInsercao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaBusca.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Busca Arvore AVL com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoBusca<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaRemocao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Remocao Arvore AVL com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoRemocao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        delete []questionid;
+        n++;
+        n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    }
+
+///analise Arvore AVLM
+
+    n = 0;
+    n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    cout<<n_dados<<endl;
+
+    while(n_dados != -1){
+
+        cout<<"N = "<<n_dados<<endl;
+        int *questionid = new int[n_dados];
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoInsercao = 0;
+        t0 = clock();
+
+
+        ///Inserir Arvore AVLM
+        ArvAVLM arv;
+
+        for(int i = 0; i<n_dados;i++)
+            arv.inserir(questionid[i]);
+
+        tf = clock();
+        tempo_gastoInsercao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoBusca = 0;
+        t0 = clock();
+
+        ///Busca Arvore AVLM
+        for(int i = 0; i<n_dados;i++){
+            bool achou;
+            achou = arv.busca(questionid[i]);
+        }
+
+        tf = clock();
+        tempo_gastoBusca = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        randomizar(questionid,n_dados);
+
+        ///calcula tempo
+        tempo_gastoRemocao = 0;
+        t0 = clock();
+
+        ///Remocao Arvore AVLM
+        for(int i = 0; i<n_dados;i++)
+            arv.remover(questionid[i]);
+
+        tf = clock();
+        tempo_gastoRemocao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
+
+        ///saida Arvore AVLM
+
+        ofstream saida;
+
+        saida.open("saidaInsercao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Insercao Arvore AVLM com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoInsercao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaBusca.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Busca Arvore AVLM com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoBusca<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        saida.open("saidaRemocao.txt",ios::app|ios::in);
+        if(saida.is_open())
+        {
+            saida <<"Remocao Arvore AVLM com N = "<<n_dados<<endl;
+            saida <<endl;
+            saida <<" tempo : "<<tempo_gastoRemocao<<endl;
+            saida <<endl;
+            saida.close();
+        }
+        else{
+            cout<<"Erro ao abrir o arquivo saida!"<<endl;
+            exit(1);
+        }
+
+        delete []questionid;
+        n++;
+        n_dados = get_quant_dados(n);///pega do arquivo entrada um N
+    }
 
     return 0;
 }

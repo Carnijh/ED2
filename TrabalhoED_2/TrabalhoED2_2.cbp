@@ -32,10 +32,23 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ArvAVL.cpp" />
+		<Unit filename="ArvAVL.h" />
+		<Unit filename="ArvAVLM.cpp" />
+		<Unit filename="ArvAVLM.h" />
+		<Unit filename="ArvRN.cpp" />
+		<Unit filename="ArvRN.h" />
 		<Unit filename="ArvoreB.cpp" />
 		<Unit filename="ArvoreB.h" />
+		<Unit filename="No.cpp" />
+		<Unit filename="No.h" />
+		<Unit filename="NoAVL.h" />
+		<Unit filename="NoAVLM.h" />
 		<Unit filename="NoB.cpp" />
 		<Unit filename="NoB.h" />
+		<Unit filename="NoRN.h" />
+		<Unit filename="arv_splay.cpp" />
+		<Unit filename="arv_splay.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

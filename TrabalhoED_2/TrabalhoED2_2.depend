@@ -1,9 +1,14 @@
 # depslib dependency file v1.0
-1527730953 source:c:\users\leona\desktop\trabalhoed2_2\main.cpp
+1528152861 source:c:\users\leona\desktop\trabalhoed2_2\main.cpp
 	<iostream>
 	<stdlib.h>
 	<fstream>
+	<time.h>
 	"ArvoreB.h"
+	"arv_splay.h"
+	"ArvAVL.h"
+	"ArvAVLM.h"
+	"ArvRN.h"
 
 1527727951 source:c:\users\leona\desktop\trabalhoed2_2\arvoreb.cpp
 	"ArvoreB.h"
@@ -19,4 +24,50 @@
 1527724153 source:c:\users\leona\desktop\trabalhoed2_2\nob.cpp
 	"NoB.h"
 	<iostream>
+
+1528069585 source:c:\users\leona\desktop\trabalhoed2_2\arv_splay.cpp
+	<iostream>
+	"arv_splay.h"
+	<cstdio>
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\arv_splay.h
+	"No.h"
+
+1528072183 c:\users\leona\desktop\trabalhoed2_2\no.h
+
+1528069585 source:c:\users\leona\desktop\trabalhoed2_2\arvavl.cpp
+	"ArvAVL.h"
+	<iostream>
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\arvavl.h
+	"NoAVL.h"
+	<iostream>
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\noavl.h
+	<iostream>
+
+1528069585 source:c:\users\leona\desktop\trabalhoed2_2\arvavlm.cpp
+	"ArvAVLM.h"
+	<iostream>
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\arvavlm.h
+	"NoAVLM.h"
+	<iostream>
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\noavlm.h
+	<iostream>
+
+1528069585 source:c:\users\leona\desktop\trabalhoed2_2\arvrn.cpp
+	<bits/stdc++.h>
+	"ArvRN.h"
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\arvrn.h
+	<iostream>
+	<cstdlib>
+	"NoRN.h"
+
+1528069585 c:\users\leona\desktop\trabalhoed2_2\norn.h
+
+1528069585 source:c:\users\leona\desktop\trabalhoed2_2\no.cpp
+	"No.h"
 

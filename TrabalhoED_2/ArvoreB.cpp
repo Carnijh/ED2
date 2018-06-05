@@ -122,7 +122,7 @@ void ArvoreB::split(NoB * no){
 
         while(no->numchaves != d){
             aux->filho[1]->insere(no->info[d+1]);
-            remover(no->info[d+1]);
+            remover(no->info[d+1]);///ver isso
         }
 
         for(int i= d+2,j = 0; i<((2*d)+2)||aux->filho[i]!=NULL ;i++, j++)
