@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1528152861 source:c:\users\leona\desktop\trabalhoed2_2\main.cpp
+1529012391 source:c:\users\leona\desktop\trabalhoed2_2\main.cpp
 	<iostream>
 	<stdlib.h>
 	<fstream>
@@ -10,7 +10,7 @@
 	"ArvAVLM.h"
 	"ArvRN.h"
 
-1527727951 source:c:\users\leona\desktop\trabalhoed2_2\arvoreb.cpp
+1529014633 source:c:\users\leona\desktop\trabalhoed2_2\arvoreb.cpp
 	"ArvoreB.h"
 	"Nob.h"
 
@@ -21,7 +21,7 @@
 1527724153 c:\users\leona\desktop\trabalhoed2_2\nob.h
 	<iostream>
 
-1527724153 source:c:\users\leona\desktop\trabalhoed2_2\nob.cpp
+1529014633 source:c:\users\leona\desktop\trabalhoed2_2\nob.cpp
 	"NoB.h"
 	<iostream>
 
@@ -57,7 +57,7 @@
 1528069585 c:\users\leona\desktop\trabalhoed2_2\noavlm.h
 	<iostream>
 
-1528069585 source:c:\users\leona\desktop\trabalhoed2_2\arvrn.cpp
+1528153649 source:c:\users\leona\desktop\trabalhoed2_2\arvrn.cpp
 	<bits/stdc++.h>
 	"ArvRN.h"
 

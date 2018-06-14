@@ -45,13 +45,12 @@ void ArvoreB::imprimirAux(NoB * no){
 NoB * ArvoreB::busca(int chave){
 
     if(raiz == NULL){
-        cout<<"Chave nao encontrada arvore vazia!"<<endl;
         return NULL;
     }
 
     NoB * p = raiz;
     int i = 0;
-
+    NoB *aux = NULL;/*
     while(true){
         if(chave == p->info[i]){
             cout<<"Chave encontrada!"<<endl;
@@ -71,13 +70,34 @@ NoB * ArvoreB::busca(int chave){
                 i = 0;
         }
         else return p;
+    }*/
+    if(chave == 0){
+     cout<<chave<<endl;
     }
+    while(p){
+        if(p->getPosicao(chave)!=-1){
+            aux = p;
+            int i = 0;
+            for(i =0; i<(2*d)+1; i++){
+                if(p->info[i]>chave){
+                    p = p->filho[i];
+                    break;
+                }
+            }
+            if(i == (2*d)+1){
+                p = p->filho[i];
+            }
+        }
+        else{
+            return p;
+        }
+    }
+    return aux;
 }
 
 NoB * ArvoreB::buscaB(int chave, bool * encontrada){
 
     if(raiz == NULL){
-        cout<<"Chave nao encontrada arvore vazia!"<<endl;
         return NULL;
     }
 
@@ -112,40 +132,49 @@ NoB * ArvoreB::buscaB(int chave, bool * encontrada){
 void ArvoreB::split(NoB * no){
 
     NoB * aux;
-
     if(no == raiz){
+        cout<<"alguma coisa"<<endl;
         aux = new NoB(d,false);
-        aux->insere(no->info[d+1]);
-        no->remover(no->info[d+1]);
+        cout<<"alguma coisa2"<<endl;
+        aux->insere(no->info[d]);
+        no->remover(no->info[d]);
         aux->filho[0] = raiz;
         aux->filho[1] = new NoB(d,true);
 
-        while(no->numchaves != d){
-            aux->filho[1]->insere(no->info[d+1]);
-            remover(no->info[d+1]);///ver isso
+        for(int i= d+1,j = 0; i<((2*d)+1) ;i++, j++){
+            aux->info[j] = no->info[i];
+            no->info[i] = NULL;
+            no->numchaves--;
+            aux->numchaves++;
         }
 
-        for(int i= d+2,j = 0; i<((2*d)+2)||aux->filho[i]!=NULL ;i++, j++)
+        for(int i= d,j = 0; i<((2*d)+2) ;i++, j++){
             aux->filho[j] = no->filho[i];
-
+            no->filho[i] = NULL;
+        }
         raiz = aux;
     }
     else{
+
         aux = new NoB(d,true);
-        int meio = no->info[d+1];
+        int meio = no->info[d];
         NoB* pai = no->getPai(no,raiz);
-        pai->insere(no->info[d+1]);
-        remover(no->info[d+1]);
+        pai->insere(meio);
+        remover(meio);
         pai->filho[no->getPosicao(meio)] = no->filho[no->getPosicao(meio)+1];
         pai->filho[no->getPosicao(meio)+1] = aux;
 
-        while(no->numchaves != d){
-            aux->filho[1]->insere(no->info[d+1]);
-            remover(no->info[d+1]);
+        for(int i= d+1,j = 0; i<((2*d)+1) ;i++, j++){
+            aux->info[j] = no->info[i];
+            no->info[i] = NULL;
+            no->numchaves--;
+            aux->numchaves++;
         }
 
-        for(int i= d+2,j = 0; i<((2*d)+2)||aux->filho[i]!=NULL ;i++, j++)
+        for(int i= d+2,j = 0; i<((2*d)+2)||aux->filho[i]!=NULL ;i++, j++){
             aux->filho[j] = no->filho[i];
+            no->filho[i] = NULL;
+        }
 
         if(pai->numchaves == ((2*d)+1)){
             split(pai);
@@ -156,13 +185,15 @@ void ArvoreB::split(NoB * no){
 void ArvoreB::inserir(int chave){
 
     NoB * p = busca(chave);
-
+    cout<<"aqui"<<endl;
     if(p == NULL){
+        cout<<"aqui 2"<<endl;
         p = new NoB(d,true);
         p->insere(chave);
         raiz = p;
     }
     else{
+        cout<<"aqui3"<<endl;
         p->insere(chave);
         if(p->numchaves == ((2*d)+1)){
             split(p);
@@ -173,7 +204,7 @@ void ArvoreB::inserir(int chave){
 void ArvoreB::remover(int chave){
 
     bool * encontrado;
-    * encontrado = false;
+    *encontrado = false;
     NoB * p = buscaB(chave,encontrado);
 
     if(p == NULL){

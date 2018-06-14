@@ -93,8 +93,8 @@ void randomizar(int v[], int n){
 
     cout<<"randomizar"<<endl;
 
-    srand(time(NULL));
-
+    //srand(time(NULL));
+    srand(1);
     ifstream inteiros;
     inteiros.open("lista.txt");
     int *aleatoriza = new int[n];
@@ -144,7 +144,7 @@ int main()
     */
 
 ///analise Arvore B
-
+    cout<<"Analise Arvore B"<<endl;
     int n = 0;
     int n_dados = get_quant_dados(n);///pega do arquivo entrada um N
     cout<<n_dados<<endl;
@@ -165,11 +165,14 @@ int main()
         t0 = clock();
 
         ///Inserir Arvore B
-        int d = 2;
+        cout<<"Inserindo"<<endl;
+        int d = 3;
         ArvoreB arv(d);
 
-        for(int i = 0; i<n_dados;i++)
+        for(int i = 0; i<n_dados;i++){
             arv.inserir(questionid[i]);
+            cout<<i<<endl;
+        }
 
         tf = clock();
         tempo_gastoInsercao = ( (double) (tf - t0) ) / CLOCKS_PER_SEC;
@@ -252,8 +255,8 @@ int main()
         n++;
         n_dados = get_quant_dados(n);///pega do arquivo entrada um N
     }
-
-
+    cout<<"Terminada Analise Arvore B"<<endl;
+/*
 ///analise Arvore RN
 
     n = 0;
@@ -676,6 +679,6 @@ int main()
         n++;
         n_dados = get_quant_dados(n);///pega do arquivo entrada um N
     }
-
+    */
     return 0;
 }

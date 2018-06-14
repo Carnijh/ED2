@@ -3,6 +3,7 @@
 
 NoB::NoB(int tam, bool f)
 {
+    cout<<"alguma coisa3"<<endl;
     d = tam;
     numchaves = 0;
     info = new int [d+1];
@@ -13,6 +14,7 @@ NoB::NoB(int tam, bool f)
         info[i] = -1;
     for (int i = 0; i < ((2*d)+2);i++)
         filho[i] = NULL;
+    cout<<"alguma coisa4"<<endl;
 }
 
 NoB::~NoB()
@@ -82,6 +84,7 @@ int NoB::getPosicaoPai(NoB* raiz, NoB* no){
 
 void NoB::insere(int chave){
 
+    cout<<"alguma coisa3"<<endl;
     if(numchaves == 0){
         info[0] = chave;
         numchaves ++;
@@ -112,11 +115,11 @@ void NoB::remover(int chave){
     int posicao = getPosicao(chave);
 
     if (posicao != -1){
-        for(int i = posicao; i <= numchaves-1;i++){
+        for(int i = posicao; i < numchaves-1;i++){
             info[i] = info[i+1];
         }
         numchaves --;
-        for(int i = (2*d)+1; i >= numchaves;i++)
+        for(int i = (2*d)+1; i > numchaves;i--)
             info[i] = -1;
     }
     else
