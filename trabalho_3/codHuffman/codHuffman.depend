@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1531112291 source:c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\main.cpp
+	<iostream>
+	<cstring>
+	"ArvHuff.h"
+	"HeapMin.h"
+
+1529603958 source:c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\arvhuffman.cpp
+	"arvHuffman.h"
+	<cstdio>
+	<iostream>
+
+1529603929 c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\arvhuffman.h
+	"NoHuffman.h"
+
+1531108064 c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\nohuffman.h
+	"NoHuffman.h"
+
+1531108523 source:c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\heapmin.cpp
+	<iostream>
+	<cstdio>
+	"HeapMin.h"
+
+1531108523 c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\heapmin.h
+	"NoHuffman.h"
+
+1531115096 source:c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\arvhuff.cpp
+	<iostream>
+	<cstdio>
+	"HeapMin.h"
+	"ArvHuff.h"
+	"NoHuffman.h"
+
+1531112012 c:\users\user\downloads\estudos\engenharia computacional\5º período\estrutura de dados ii\trabalho 3\codhuffman\arvhuff.h
+	"NoHuffman.h"
+
