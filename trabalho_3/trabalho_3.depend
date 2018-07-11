@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1530999733 source:c:\users\leona\desktop\trabalhoed2_2\trabalho_3\main.cpp
+	<iostream>
+	"lz77.h"
+
+1531194021 c:\users\leona\desktop\trabalhoed2_2\trabalho_3\lz77.h
+	<String.h>
+	"string.h"
+
